@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>primzahlen</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 200px;
+            background: #f4f4f4;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        .sidebar div {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            text-align: center;
+        }
+        .main {
+            flex: 1;
+            padding: 10px;
+            background: #fff;
+            border-left: 1px solid #ddd;
+            min-height: 100vh;
+            /*display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;*/
+            position: relative;
+            font-size: 1em;
+            font-weight: bold;
+            /* nice text */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 3em;
+        }
+        .droppable {
+            border-bottom: 1px solid #ddd;
+            background: #fff;
+            padding: 10px;
+            height: 20px;
+            /*display: flex;
+            justify-content: center;
+            align-items: center;
+            position: inline;*/
+            border-radius: 0;
+            /*width: 200px;*/
+            color: transparent;
+        }
+        .droppable div{
+            display: inline;
+            color: #000;
+        }
+        .draggable {
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="draggable" draggable="true" id="word1">Primzahl</div>
+        <div class="draggable" draggable="true" id="word2">numerus primus</div>
+        <div class="draggable" draggable="true" id="word3">Teiler</div>
+        <div class="draggable" draggable="true" id="word3">Teiler</div>
+        <div class="draggable" draggable="true" id="word5">primus</div>
+        <div class="draggable" draggable="true" id="word6">Anfangszahl</div>
+        <div class="draggable" draggable="true" id="word7">alten Griechen</div>
+        <div class="draggable" draggable="true" id="word8">Primzahlen</div>
+        <div class="draggable" draggable="true" id="word9">alten Griechen</div>
+        <div class="draggable" draggable="true" id="word10">pythagoräischen Schule</div>
+        <div class="draggable" draggable="true" id="word8">Primzahlen</div>
+        <div class="draggable" draggable="true" id="word12">perfekte und befreundete Zahlen</div>
+        <div class="draggable" draggable="true" id="word13">Primzahlerforschung</div>
+        <div class="draggable" draggable="true" id="word14">Elemente</div>
+        <div class="draggable" draggable="true" id="word15">Euklid</div>
+        <div class="draggable" draggable="true" id="word8">Primzahlen</div>
+        <div class="draggable" draggable="true" id="word17">Euklid</div>
+        <div class="draggable" draggable="true" id="word8">Primzahlen</div>
+    </div>
+    <div class="main">
+        Eine <span class="droppable" id="dropzone1">Primzahl</span> (von lateinisch <span class="droppable" id="dropzone2">numerus primus</span> ‚erste Zahl‘) ist eine natürliche Zahl, die genau zwei <span class="droppable" id="dropzone3">Teiler</span> hat (und somit größer als 1 ist). Diese zwei <span class="droppable" id="dropzone3">Teiler</span> sind 1 und die Zahl selber. Dabei bedeutet <span class="droppable" id="dropzone5">primus</span> speziell „Anfang, das Erste (der Dinge)“, sodass eine „<span class="droppable" id="dropzone6">Anfangszahl</span>“ gemeint ist, die aus keiner anderen natürlichen Zahl multiplikativ konstruiert werden kann.
+
+        Die <span class="droppable" id="dropzone7">alten Griechen</span> Das erste Volk, das sich mit den <span class="droppable" id="dropzone8">Primzahlen</span> äftigte, waren die <span class="droppable" id="dropzone9">alten Griechen</span>. Die Mathematiker der <span class="droppable" id="dropzone10">pythagoräischen Schule</span> (500-300 v. Chr.) interessierten sich besonders für die Zahlentheorie und sahen darin etwas mythisches. Sie verstanden das Prinzip der <span class="droppable" id="dropzone8">Primzahlen</span> und entdeckten und erforschten <span class="droppable" id="dropzone12">perfekte und befreundete Zahlen</span>. Sie machten zwar zahlreiche bedeutende Entdeckungen, es gelang ihnen allerdings nicht, ihre Theorien zu beweisen. Eine neue Ära der <span class="droppable" id="dropzone13">Primzahlerforschung</span> wurde um 300 v. Chr. mit dem Erscheinen der „<span class="droppable" id="dropzone14">Elemente</span>“ von <span class="droppable" id="dropzone15">Euklid</span> eingeleitet. Das griechische Universalgenie bewies in seinem Buch erstmals, dass es unendlich viele <span class="droppable" id="dropzone8">Primzahlen</span> gibt. Dies ist einer der ersten bekannten mathematischen Beweise der einen Widerspruch benutzt, um eine Vermutung zu begründen. Außerdem bewies <span class="droppable" id="dropzone17">Euklid</span> eine der wichtigsten Grundlagen der Arithmetik, dass nämlich jede Ganzzahl als das Produkt von <span class="droppable" id="dropzone8">Primzahlen</span> geschrieben werden kann.
+    </div>
+
+    <script>
+        const draggables = document.querySelectorAll('.draggable');
+        const dropzones = document.querySelectorAll('.droppable');
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', e.target.id);
+            });
+        });
+
+        dropzones.forEach(dropzone => {
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const wordId = e.dataTransfer.getData('text/plain');
+                const word = document.getElementById(wordId);
+                if (word) {
+                    const clone = word.cloneNode(true);
+                    clone.classList.remove('draggable');
+                    clone.style.position = 'static';  // Remove absolute positioning
+                    clone.style.cursor = 'default';
+                    dropzone.innerHTML = '';  // Clear previous content
+                    dropzone.appendChild(clone);
+                    dropzoneNumber = dropzone.id.replace('dropzone', '');
+                    cloneNumber = clone.id.replace('word', '');
+                    if (parseInt(cloneNumber) == parseInt(dropzoneNumber)){
+                        dropzone.style.borderBottom = '2px solid green';
+                    }else if (parseInt(cloneNumber) - parseInt(dropzoneNumber) <= 1 && parseInt(cloneNumber) - parseInt(dropzoneNumber) >= -1) {
+                        dropzone.style.borderBottom = '2px solid orange';
+                    }else {
+                        dropzone.style.borderBottom = '2px solid red';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
